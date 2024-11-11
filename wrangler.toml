@@ -1,0 +1,18 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "otto-home"
+main = "src/index.ts"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+assets = { directory = "./public", binding = "ASSETS", html_handling = "force-trailing-slash", not_found_handling = "404-page" }
+routes = [
+	{ pattern = "ottocratesolver.com", custom_domain = true }
+]
+
+# Workers Logs
+# Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/
+# Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs
+[observability]
+enabled = true
+
+# c7bb2726-4778-4d4a-b86d-5dadef3a0995.cfargotunnel.com
+# e052f694-e35f-4d1c-9770-e57296cd7fb5.cfargotunnel.com
