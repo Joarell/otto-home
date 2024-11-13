@@ -1,3 +1,5 @@
+import { address } from './otto.address.mjs';
+
 globalThis.fns = { loginInto };
 
 globalThis.onkeydown = (keyPress) => {
@@ -32,7 +34,7 @@ export function loginInto () {
 
 
 async function takeLogin(userLogin){
-	const url = `/takeLogin/${userLogin.name}`;
+	const url = `${address}/takeLogin/${userLogin.name}`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		const checkOut = fetch(url, {
@@ -60,8 +62,7 @@ async function setLogin(info, userData) {
 
 async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
-	//const url =		'/start';
-	const url =		'https://otto-home.josephjoarell.workers.dev/random';
+	const url =		`${address}/start`;
 
 	console.log(url)
 	await fetch (url, {
@@ -80,7 +81,7 @@ async function appAccessCheckIn({ result, access }) {
 		'Content-Type': 'application/javascript',
 		'Accept': 'text/html; text/css; application/javascript',
 	};
-	const request =		new Request(`/app`, {
+	const request =		new Request(`${address}/app`, {
 		Method: "POST",
 		Mode: 'cors',
 		Headers: header,
