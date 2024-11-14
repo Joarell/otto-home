@@ -64,7 +64,7 @@ async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
 	const url =		`${address}/start`;
 
-	console.log(url)
+	console.log(`THE userName: ${USER}`)
 	await fetch (url, {
 		method: "POST",
 		body: USER,
