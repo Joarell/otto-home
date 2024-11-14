@@ -26,7 +26,7 @@ export function loginInto () {
 		passFrase: userPass
 	};
 
-	if (userName && !checkingPass (userPass))
+	if (userName && !checkingPass(userPass))
 		return (backEndLoginAuth(badge));
 	// document.getElementById("warning").open = true;
 	alert(`Opss! Wrong credentials. Please try again!`);
@@ -60,15 +60,17 @@ async function setLogin(info, userData) {
 };
 
 
-async function backEndLoginAuth(userInfo) {
-	const USER =	JSON.stringify(userInfo);
+async function backEndLoginAuth({ name, passFrase }) {
+	const body =	JSON.stringify({name, passFrase});
 	const url =		`${address}/start`;
 
-	console.log(`THE userName: ${USER}`)
 	await fetch (url, {
 		method: "POST",
-		body: USER,
-		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+		body,
+		headers: {
+			"Accept": "application/json, text/plain, */*",
+			'Content-Type': 'application/json; charset=UTF-8',
+		},
 	}).then(body => body.json())
 	.then(data => setLogin(data, userInfo))
 	//.catch(takeLogin(userInfo));
