@@ -4,12 +4,12 @@ globalThis.fns = { loginInto };
 
 globalThis.onkeydown = (keyPress) => {
 	if (keyPress.key === 'Enter')
-		loginInto ();
+		loginInto();
 };
 
 
 // TODO: change the span from 7 to 20.
-function checkingPass (passFrase) {
+function checkingPass(passFrase) {
 	if (passFrase.length < 7)
 		return (true);
 
@@ -18,10 +18,10 @@ function checkingPass (passFrase) {
 };
 
 
-export function loginInto () {
-	const userName	= document.getElementById("user-name").value;
-	const userPass	= document.getElementById("passFrase").value;
-	const badge		= {
+export function loginInto() {
+	const userName = document.getElementById("user-name").value;
+	const userPass = document.getElementById("passFrase").value;
+	const badge = {
 		name: userName,
 		passFrase: userPass
 	};
@@ -33,7 +33,7 @@ export function loginInto () {
 };
 
 
-async function takeLogin(userLogin){
+async function takeLogin(userLogin) {
 	const url = `${address}/takeLogin/${userLogin.name}`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
@@ -41,49 +41,54 @@ async function takeLogin(userLogin){
 			method: "GET",
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 		}).then(body => body.status)
-		.then(status => status === 200 ? backEndLoginAuth(userLogin): false)
+			.then(status => status === 200 ? backEndLoginAuth(userLogin) : false)
 	}
 	return;
 };
 
 
 async function setLogin(info, userData) {
-	switch(info.msg) {
+	switch (info.msg) {
 		case 'active':
-			return(await appAccessCheckIn(info));
+			return (await appAccessCheckIn(info));
 		case "ended":
 			return (takeLogin(userData));
 		default:
 			alert('Wrong credentials. Please try again!');
 	};
-	return(info);
+	return (info);
 };
 
 
 async function backEndLoginAuth({ name, passFrase }) {
-	const body =	JSON.stringify({name, passFrase});
-	const url =		`${address}/start`;
-
-	await fetch (url, {
+	const url = `${address}/start`;
+	const body = JSON.stringify({ name, passFrase });
+	const headers = new Headers();
+	headers.append("Content-Type", "application/json");
+	headers.append("Accept", "*/*");
+	headers.append("Host", "solver.ottocratesolver.com");
+	headers.append("Connection", "keep-alive");
+	const request = new Request(url, {
 		method: "POST",
+		mode: 'cors',
 		body,
-		headers: {
-			"Accept": "application/json, text/plain, */*",
-			'Content-Type': 'application/json; charset=UTF-8',
-		},
-	}).then(body => body.json())
-	.then(data => setLogin(data, userInfo))
+		site: 'same-site',
+		headers,
+	});
+
+	await fetch(request).then(body => body.json())
+		.then(data => setLogin(data, { name, passFrase }))
 	//.catch(takeLogin(userInfo));
 };
 
 
 async function appAccessCheckIn({ result, access }) {
-	const header =	{
+	const header = {
 		'Authorization': `Bearer ${result[0]}`,
 		'Content-Type': 'application/javascript',
 		'Accept': 'text/html; text/css; application/javascript',
 	};
-	const request =		new Request(`${address}/app`, {
+	const request = new Request(`${address}/app`, {
 		Method: "POST",
 		Mode: 'cors',
 		Headers: header,
@@ -106,7 +111,7 @@ async function appAccessCheckIn({ result, access }) {
 			throw new Error(checkOut.status);
 		};
 	}
-	catch(err) {
+	catch (err) {
 		alert(`Attention redirection: ${err}`);
 	};
 };
