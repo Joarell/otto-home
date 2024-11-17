@@ -1,6 +1,8 @@
 import { address } from './otto.address.mjs';
 
-globalThis.fns = { loginInto };
+//globalThis.fns = { loginInto };
+
+globalThis.onsubmit = () => loginInto();
 
 globalThis.onkeydown = (keyPress) => {
 	if (keyPress.key === 'Enter')
@@ -37,17 +39,18 @@ async function takeLogin(userLogin) {
 	const url = `${address}/takeLogin/${userLogin.name}`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
-		const checkOut = fetch(url, {
+		await fetch(url, {
 			method: "GET",
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 		}).then(body => body.status)
-			.then(status => status === 200 ? backEndLoginAuth(userLogin) : false)
+		.then(status => status === 200 ? backEndLoginAuth(userLogin) : false)
 	}
 	return;
 };
 
 
 async function setLogin(info, userData) {
+	console.log(`SET LOGIN: ${info} and ${userData}`)
 	switch (info.msg) {
 		case 'active':
 			return (await appAccessCheckIn(info));
@@ -60,25 +63,19 @@ async function setLogin(info, userData) {
 };
 
 
-async function backEndLoginAuth({ name, passFrase }) {
-	const url = `${address}/start`;
-	const body = JSON.stringify({ name, passFrase });
-	const headers = new Headers();
-	headers.append("Content-Type", "application/json");
-	headers.append("Accept", "*/*");
-	headers.append("Host", "solver.ottocratesolver.com");
-	headers.append("Connection", "keep-alive");
-	const request = new Request(url, {
-		method: "POST",
-		mode: 'cors',
-		body,
-		site: 'same-site',
-		headers,
+async function backEndLoginAuth(userInfo) {
+	const form = document.getElementById('login');
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const test = await fetch(form.action, {
+			method: 'POST',
+			body: new FormData(form),
+		}).then(response => alert(response.json()))
+		.the(res => setLogin(res, userInfo))
+		.catch(takeLogin(userInfo));
 	});
-
-	await fetch(request).then(body => body.json())
-		.then(data => setLogin(data, { name, passFrase }))
-	//.catch(takeLogin(userInfo));
+	//form.removeEventListener("submit", login);
+	alert(test)
 };
 
 
