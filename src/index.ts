@@ -11,14 +11,19 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import login from "../public/login/index.html"
+interface Env {
+	ASSETS: Fetcher;
+}
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
 		switch (url.pathname) {
-			case '/api/':
-				return new Response(login);
+			case '/otto':
+				const result = await env.APP.otto(url.pathname);
+				console.log(await result)
+				return (new Response(result));
+				//return (new Response.redirect('https://ottocratesolver.com', 301));
 			case '/random':
 				return new Response(crypto.randomUUID());
 			default:

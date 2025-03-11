@@ -4,8 +4,10 @@ main = "src/index.ts"
 compatibility_date = "2024-11-06"
 compatibility_flags = ["nodejs_compat"]
 assets = { directory = "./public", binding = "ASSETS", html_handling = "force-trailing-slash", not_found_handling = "404-page" }
+# services = [ { binding = "APP", service = "otto-app-ts" }, { binding = "D1", service = "otto-db" } ]
 routes = [
-	{ pattern = "ottocratesolver.com", custom_domain = true }
+	{ pattern = "ottocratesolver.com", custom_domain = true },
+	{ pattern = "app.ottocratesolver.com/app*", zone_name = "ottocratesolver.com" }
 ]
 
 # Workers Logs

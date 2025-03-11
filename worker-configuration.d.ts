@@ -3,16 +3,3 @@
 interface Env {
 	ASSETS: Fetcher;
 };
-
-export default {
-	async fetch (req, env): Promise<Response> {
-		const url = new URL(req.url);
-
-		if (url.pathname.startshWith("/api/")) {
-			console.log(`Accessing: ${url.pathname}`);
-			return new Response("OK")
-		};
-		return (env.ASSETS.fetch(req));
-	},
-} satisfies Exportedhandler<Env>;
-
