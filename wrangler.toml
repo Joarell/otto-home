@@ -3,11 +3,11 @@ name = "otto-home"
 main = "src/index.ts"
 compatibility_date = "2024-11-06"
 compatibility_flags = ["nodejs_compat"]
-# assets = { directory = "./public", binding = "ASSETS", html_handling = "force-trailing-slash", not_found_handling = "404-page" }
+assets = { directory = "./public", binding = "ASSETS", html_handling = "force-trailing-slash", not_found_handling = "404-page" }
 # services = [ { binding = "APP", service = "otto-app-ts" }, { binding = "D1", service = "otto-db" } ]
 routes = [
-	{ pattern = "ottocratesolver.com/app", zone_name = "ottocratesolver.com"},
-	{ pattern = "app.ottocratesolver.com/*", zone_name = "ottocratesolver.com" }
+	{ pattern = "ottocratesolver.com/app", zone_name = "ottocratesolver.com" },
+	{ pattern = "app.ottocratesolver.com/app*", custom_domain = true }
 ]
 
 # Workers Logs
