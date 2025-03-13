@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 # services = [ { binding = "APP", service = "otto-app-ts" }, { binding = "D1", service = "otto-db" } ]
 routes = [
 	{ pattern = "ottocratesolver.com/app", zone_name = "ottocratesolver.com"},
-	{ pattern = "app.ottocratesolver.com/app*", zone_name = "ottocratesolver.com" }
+	{ pattern = "app.ottocratesolver.com/*", zone_name = "ottocratesolver.com" }
 ]
 
 # Workers Logs
