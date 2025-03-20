@@ -2,7 +2,7 @@ globalThis.fns = { loginInto };
 
 globalThis.onkeydown = (keyPress) => {
 	if (keyPress.key === 'Enter')
-		loginInto ();
+		loginInto();
 };
 
 
@@ -31,7 +31,7 @@ export function loginInto () {
 
 
 async function takeLogin(userLogin){
-	const url = `/api/v1/boot/login/`;
+	const url = `https://app.ottocratesolver.com/api/v1/boot/login/`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
@@ -73,7 +73,7 @@ async function backEndLoginAuth(userInfo) {
 
 
 async function appAccessCheckIn({ result, access }) {
-	const header =	{
+	const header = {
 		'Authorization': `Bearer ${result[0]}`,
 		'Content-Type': 'application/javascript',
 		'Accept': 'text/html; text/css; application/javascript',
