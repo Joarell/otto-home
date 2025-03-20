@@ -6,7 +6,6 @@ globalThis.onkeydown = (keyPress) => {
 };
 
 
-// TODO: change the span from 7 to 20.
 function checkingPass (passFrase) {
 	if (passFrase.length < 20)
 		return (true);
@@ -20,8 +19,8 @@ export function loginInto () {
 	const userName	= document.getElementById("user-name").value;
 	const userPass	= document.getElementById("passFrase").value;
 	const badge		= {
-		name: userName,
-		passFrase: userPass
+		userName,
+		passPhrase: userPass
 	};
 
 	if (userName && !checkingPass (userPass))
@@ -60,15 +59,14 @@ async function setLogin(info, userData) {
 
 async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
-	//const url =		'/start';
-	const url =		'https://otto-home.josephjoarell.workers.dev/random';
+	const url =		'https://app.ottocratesolver.com/api/v1/login/';
 
 	console.log(url)
 	await fetch (url, {
 		method: "POST",
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	}).then(body => body.json())
+	}).then(body => body.text())
 	.then(data => setLogin(data, userInfo))
 	//.catch(takeLogin(userInfo));
 };
