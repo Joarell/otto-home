@@ -31,7 +31,7 @@ export function loginInto () {
 
 
 async function takeLogin(userLogin){
-	const url = `/api/v1/boot/login/`;
+	const url = `https://app.ottocratesolver.com/api/v1/boot/login/`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
@@ -59,7 +59,7 @@ async function setLogin(info, userData) {
 
 async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
-	const url =		'/api/v1/login';
+	const url =		'https://app.ottocratesolver.com/api/v1/login';
 
 	console.log(url)
 	await fetch (url, {
