@@ -70,7 +70,7 @@ async function backEndLoginAuth(userInfo) {
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 	}).then(body => console.log(body))
 	.then(data => setLogin(data, userInfo))
-	.catch(takeLogin(userInfo));
+	//.catch(takeLogin(userInfo));
 };
 
 
