@@ -1,3 +1,8 @@
+globalThis.onsubmit = (event) => {
+	event.preventDefault();
+	loginInto();
+};
+
 globalThis.fns = { loginInto };
 
 globalThis.onkeydown = (keyPress) => {
@@ -6,25 +11,21 @@ globalThis.onkeydown = (keyPress) => {
 };
 
 
-function checkingPass (passFrase) {
-	if (passFrase.length < 20)
+function checkingPass (passPhrase) {
+	if (passPhrase.length < 15)
 		return (true);
 
 	const regex = new RegExp('^([a-z]|[A-Z]|[0-9]){4,15}$');
-	return (regex.test(passFrase));
+	return (regex.test(passPhrase));
 };
 
 
 export function loginInto () {
-	const userName	= document.getElementById("user-name").value;
-	const userPass	= document.getElementById("passPhrase").value;
-	const badge		= {
-		userName,
-		passPhrase: userPass
-	};
+	const userName =	document.getElementById("user-name").value;
+	const passPhrase =	document.getElementById("passPhrase").value;
 
-	if (userName && !checkingPass (userPass))
-		return (backEndLoginAuth(badge));
+	if (userName && checkingPass(passPhrase))
+		return (backEndLoginAuth({ userName, passPhrase }));
 	// document.getElementById("warning").open = true;
 	alert(`Opss! Wrong credentials. Please try again!`);
 };
@@ -36,6 +37,7 @@ async function takeLogin(userLogin){
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
 			method: "POST",
+			mode: 'no-cors',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 			body: JSON.stringify({ user: userLogin })
 		}).then(body => body.status)
@@ -61,14 +63,14 @@ async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
 	const url =		'https://app.ottocratesolver.com/api/v1/login';
 
-	console.log(url)
 	await fetch (url, {
 		method: "POST",
+		mode: 'no-cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	}).then(body => body.text())
+	}).then(body => console.log(body))
 	.then(data => setLogin(data, userInfo))
-	//.catch(takeLogin(userInfo));
+	.catch(takeLogin(userInfo));
 };
 
 
