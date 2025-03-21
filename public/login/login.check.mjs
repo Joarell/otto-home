@@ -68,9 +68,9 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'no-cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	}).then(body => console.log(body))
-	.then(data => setLogin(data, userInfo))
-	.catch(e => alert(e));
+	}).then(async body => alert(await body.text()))
+	//.then(data => setLogin(data, userInfo))
+	//.catch(e => alert(e));
 	//.catch(takeLogin(userInfo));
 };
 
