@@ -48,7 +48,7 @@ async function takeLogin(userLogin){
 
 async function setLogin(info, userData) {
 	switch(info.msg) {
-		case 'active':
+		case 'Active!':
 			return(await appAccessCheckIn(info));
 		case "ended":
 			return (takeLogin(userData));
