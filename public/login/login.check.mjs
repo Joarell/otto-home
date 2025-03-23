@@ -63,48 +63,47 @@ async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
 	const url =		'https://app.ottocratesolver.com/api/v1/login';
 
-	await fetch (url, {
+	const respOtto = await fetch (url, {
 		method: "POST",
-		mode: 'no-cors',
+		mode: 'cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	}).then(async body => alert(body.body))
-	//.then(data => setLogin(data, userInfo))
-	//.catch(e => alert(e));
-	//.catch(takeLogin(userInfo));
+	})
+	console.log(respOtto);
+	//appAccessCheckIn(respOtto);
 };
 
 
-async function appAccessCheckIn({ result, access }) {
-	const header = {
-		'Authorization': `Bearer ${result[0]}`,
-		'Content-Type': 'application/javascript',
-		'Accept': 'text/html; text/css; application/javascript',
-	};
-	const request =		new Request(`https://app.ottocratesolver.com`, {
-		Method: "POST",
-		Mode: 'no-cors',
-		Headers: header,
-		Cache: 'default',
-		Credentials: 'include',
-		Connection: 'keep-alive',
-		Redirect: 'follow',
-	});
-	try {
-		const checkOut = await fetch(request)
-			.catch(err => alert(`Warning! ${err}`));
-
-		if (checkOut.status <= 350) {
-			globalThis.localStorage.setItem('tier', access);
-			globalThis.location.assign(checkOut.url);
-		}
-		else {
-			alert("Not authorized. Please, try again!");
-			globalThis.location.reload();
-			throw new Error(checkOut.status);
-		};
-	}
-	catch(err) {
-		alert(`Attention redirection: ${err}`);
-	};
+async function appAccessCheckIn(resp) {
+	//const header = {
+	//	'Authorization': `Bearer ${result[0]}`,
+	//	'Content-Type': 'application/javascript',
+	//	'Accept': 'text/html; text/css; application/javascript',
+	//};
+	//const request =		new Request(`https://app.ottocratesolver.com`, {
+	//	Method: "POST",
+	//	Mode: 'no-cors',
+	//	Headers: header,
+	//	Cache: 'default',
+	//	Credentials: 'include',
+	//	Connection: 'keep-alive',
+	//	Redirect: 'follow',
+	//});
+	//try {
+	//	const checkOut = await fetch(request)
+	//		.catch(err => alert(`Warning! ${err}`));
+	//
+	//	if (checkOut.status <= 350) {
+	//		globalThis.localStorage.setItem('tier', access);
+	//		globalThis.location.assign(checkOut.url);
+	//	}
+	//	else {
+	//		alert("Not authorized. Please, try again!");
+	//		globalThis.location.reload();
+	//		throw new Error(checkOut.status);
+	//	};
+	//}
+	//catch(err) {
+	//	alert(`Attention redirection: ${err}`);
+	//};
 };
