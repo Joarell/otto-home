@@ -67,7 +67,10 @@ async function backEndLoginAuth(userInfo) {
 		method: "POST",
 		mode: 'cors',
 		body: USER,
-		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+		headers: {
+			'Content-Type': 'application/json; charset=UTF-8',
+			'Access-Control-Allow-Origin': 'https://ottocratesolver.com'
+		},
 	}).then(resp => console.log(resp.body))
 	//appAccessCheckIn(respOtto);
 };
