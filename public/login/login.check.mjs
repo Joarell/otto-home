@@ -65,7 +65,7 @@ async function backEndLoginAuth(userInfo) {
 
 	await fetch (url, {
 		method: "POST",
-		mode: 'same-origin',
+		mode: 'cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 	}).then(resp => console.log(resp.body))
