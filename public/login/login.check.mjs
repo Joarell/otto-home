@@ -63,13 +63,12 @@ async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
 	const url =		'https://app.ottocratesolver.com/api/v1/login';
 
-	const respOtto = await fetch (url, {
+	await fetch (url, {
 		method: "POST",
 		mode: 'no-cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	})
-	console.log(respOtto);
+	}).then(resp => console.log(resp.body))
 	//appAccessCheckIn(respOtto);
 };
 
