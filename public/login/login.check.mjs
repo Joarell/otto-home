@@ -68,7 +68,7 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'no-cors',
 		body: USER,
 		headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-	}).then(async body => alert(await body.text()))
+	}).then(async body => alert(body.ok))
 	//.then(data => setLogin(data, userInfo))
 	//.catch(e => alert(e));
 	//.catch(takeLogin(userInfo));
@@ -81,9 +81,9 @@ async function appAccessCheckIn({ result, access }) {
 		'Content-Type': 'application/javascript',
 		'Accept': 'text/html; text/css; application/javascript',
 	};
-	const request =		new Request(`/app`, {
+	const request =		new Request(`https://app.ottocratesolver.com`, {
 		Method: "POST",
-		Mode: 'cors',
+		Mode: 'no-cors',
 		Headers: header,
 		Cache: 'default',
 		Credentials: 'include',
