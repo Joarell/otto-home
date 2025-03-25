@@ -80,7 +80,7 @@ async function backEndLoginAuth(userInfo) {
 * @param {Response} res the response from the log in server
 */
 async function appAccessCheckIn(response) {
-	const { userName } = await response.json():
+	const { userName } = await response.json();
 	console.log(userName);
 	const request =		new Request(`https://app.ottocratesolver.com/${userName}`, {
 		Method: "GET",
