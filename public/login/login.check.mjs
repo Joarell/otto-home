@@ -71,8 +71,11 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => resp.headers)
-	.then(appAccessCheckIn)
+	}).then(resp => {
+		alert('LOGGIN');
+		console.log(resp.headers)
+		return(resp.clone);
+	}).then(appAccessCheckIn)
 	.catch(e => alert(e));
 };
 
