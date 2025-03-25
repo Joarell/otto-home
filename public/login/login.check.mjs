@@ -78,7 +78,7 @@ async function backEndLoginAuth(userInfo) {
 
 
 async function appAccessCheckIn(headers) {
-	alert(header.location)
+	alert(headers.location)
 	const request =		new Request(headers.location, {
 		Method: "GET",
 		Mode: 'cors',
