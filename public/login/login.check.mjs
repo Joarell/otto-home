@@ -69,12 +69,13 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	});
-	return(appAccessCheckIn(await auth.text()));
+	}).then(res => res.clone());
+	return(appAccessCheckIn(auth));
 };
 
 
-async function appAccessCheckIn(url) {
+async function appAccessCheckIn(res) {
+	console.log(res);
 	alert('LOGGIN');
 	const request =		new Request(url, {
 		Method: "GET",
