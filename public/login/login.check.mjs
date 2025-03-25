@@ -80,8 +80,9 @@ async function backEndLoginAuth(userInfo) {
 * @param {Response} res the response from the log in server
 */
 async function appAccessCheckIn(response) {
-	console.log(response);
-	const request =		new Request('https://app.ottocratesolver.com', {
+	const { userName } = await response.json():
+	console.log(userName);
+	const request =		new Request(`https://app.ottocratesolver.com/${userName}`, {
 		Method: "GET",
 		headers: response.headers,
 		Mode: 'cors',
