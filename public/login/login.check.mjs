@@ -82,7 +82,7 @@ async function appAccessCheckIn(url) {
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	globalThis.location.assign(request);
+	globalThis.location.assign(url);
 	//try {
 	//	const checkOut = await fetch(request)
 	//		.catch(err => alert(`Warning! ${err}`));
