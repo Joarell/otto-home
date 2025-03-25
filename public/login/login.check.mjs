@@ -71,13 +71,14 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	})//.then(resp => resp.headers)
-	// .then(appAccessCheckIn)
-	// .catch(e => alert(e));
+	}).then(resp => resp.headers)
+	.then(appAccessCheckIn)
+	.catch(e => alert(e));
 };
 
 
 async function appAccessCheckIn(headers) {
+	alert(header.location)
 	const request =		new Request(headers.location, {
 		Method: "GET",
 		Mode: 'cors',
