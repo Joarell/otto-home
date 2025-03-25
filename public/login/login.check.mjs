@@ -67,9 +67,12 @@ async function backEndLoginAuth(userInfo) {
 		body: USER,
 		headers: {
 			'Content-Type': 'application/json; charset=UTF-8',
+			'Content-Type': 'text/html; charset=UTF-8',
+			'Content-Type': 'text/css; charset=UTF-8',
+			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(res => res.clone());
+	}).then(res => res.json());
 	return(appAccessCheckIn(auth));
 };
 
@@ -78,7 +81,7 @@ async function backEndLoginAuth(userInfo) {
 * @param {Response} res the response from the log in server
 */
 async function appAccessCheckIn(res) {
-	console.log(res.headers);
+	console.log(res);
 	alert('LOGGIN');
 	const request =		new Request('https://app.ottocratesolver.com', {
 		Method: "GET",
