@@ -72,22 +72,23 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(async res => res.json());
-	return(appAccessCheckIn(auth));
+	}).then(appAccessCheckIn);
 };
 
 
 /**
 * @param {Response} res the response from the log in server
 */
-async function appAccessCheckIn(body) {
+async function appAccessCheckIn(response) {
+	console.log(response);
 	const request =		new Request('https://app.ottocratesolver.com', {
 		Method: "GET",
-		body,
+		headers: response.headers,
 		Mode: 'cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
+	console.log(response.headers)
 	try {
 		const checkOut = await fetch(request)
 			.catch(err => alert(`Warning! ${err}`));
