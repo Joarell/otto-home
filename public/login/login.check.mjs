@@ -32,7 +32,7 @@ export function loginInto () {
 
 
 async function takeLogin(userLogin){
-	const url = `https://app.ottocratesolver.com/api/v1/boot/login/`;
+	const url = `https://app.ottocratesolver.com/api/v1/boot/login`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
@@ -71,7 +71,9 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => resp.status === '200' ? appAccessCheckIn(resp.headers): takeLogin(userInfo));
+	}).then(resp => resp.headers)
+	.then(appAccessCheckIn)
+	.catch(e => aler(e));
 };
 
 
