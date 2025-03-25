@@ -74,10 +74,13 @@ async function backEndLoginAuth(userInfo) {
 };
 
 
+/**
+* @param {Response} res the response from the log in server
+*/
 async function appAccessCheckIn(res) {
-	console.log(res);
+	console.log(res.headers);
 	alert('LOGGIN');
-	const request =		new Request(url, {
+	const request =		new Request('https://app.ottocratesolver.com', {
 		Method: "GET",
 		Mode: 'cors',
 		Cache: 'default',
