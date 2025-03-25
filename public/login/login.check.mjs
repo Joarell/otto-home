@@ -70,7 +70,7 @@ async function backEndLoginAuth(userInfo) {
 			'Accept': '*/*'
 		},
 	});
-	console.log(auth.headers);
+	console.log(auth.headers.getAll('Set-Cookie'));
 	return(auth);
 };
 
