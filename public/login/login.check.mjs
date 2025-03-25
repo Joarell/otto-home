@@ -81,15 +81,13 @@ async function backEndLoginAuth(userInfo) {
 */
 async function appAccessCheckIn(response) {
 	const { userName } = await response.json();
-	console.log(userName);
+	console.log(await response.json());
 	const request =		new Request(`https://app.ottocratesolver.com/${userName}`, {
 		Method: "GET",
-		headers: response.headers,
 		Mode: 'cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	console.log(response.headers)
 	try {
 		const checkOut = await fetch(request)
 			.catch(err => alert(`Warning! ${err}`));
