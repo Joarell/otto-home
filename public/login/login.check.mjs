@@ -69,15 +69,13 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => resp.headers.get('set-cookie'));
-	console.log(auth);
-	return(auth);
+	});
+	return(appAccessCheckIn(await auth.text()));
 };
 
 
-async function appAccessCheckIn(headers) {
+async function appAccessCheckIn(url) {
 	alert('LOGGIN');
-	const url = 'https://app.ottocratesolver.com';
 	const request =		new Request(url, {
 		Method: "GET",
 		Mode: 'cors',
