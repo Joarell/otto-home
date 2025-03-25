@@ -69,10 +69,9 @@ async function backEndLoginAuth(userInfo) {
 		body: USER,
 		headers: {
 			'Content-Type': 'application/json; charset=UTF-8',
-			'Access-Control-Allow-Origin': 'https://ottocratesolver.com',
 			'Accept': '*/*'
 		},
-	}).then(resp => console.log(resp))
+	}).then(resp => console.log(resp.headers))
 	//appAccessCheckIn(respOtto);
 };
 
