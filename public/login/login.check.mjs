@@ -93,7 +93,7 @@ async function appAccessCheckIn(headers) {
 
 		if (checkOut.status <= 350) {
 			//globalThis.localStorage.setItem('tier', access);
-			globalThis.location.assign(checkOut.url);
+			globalThis.location.assign(headers.location);
 		}
 		else {
 			alert("Not authorized. Please, try again!");
