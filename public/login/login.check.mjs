@@ -78,30 +78,31 @@ async function backEndLoginAuth(userInfo) {
 
 
 async function appAccessCheckIn(headers) {
-	const request =		new Request(headers.location, {
-		Method: "GET",
-		Mode: 'no-cors',
-		headers,
-		Cache: 'default',
-		Credentials: 'include',
-		Connection: 'keep-alive',
-		Redirect: 'follow',
-	});
-	try {
-		const checkOut = await fetch(request)
-			.catch(err => alert(`Warning! ${err}`));
-
-		if (checkOut.status <= 350) {
-			//globalThis.localStorage.setItem('tier', access);
-			globalThis.location.assign(headers.location);
-		}
-		else {
-			alert("Not authorized. Please, try again!");
-			globalThis.location.reload();
-			throw new Error(checkOut.status);
-		};
-	}
-	catch(err) {
-		alert(`Attention redirection: ${err}`);
-	};
+	globalThis.location.assign(headers.location);
+	//const request =		new Request(headers.location, {
+	//	Method: "GET",
+	//	Mode: 'no-cors',
+	//	headers,
+	//	Cache: 'default',
+	//	Credentials: 'include',
+	//	Connection: 'keep-alive',
+	//	Redirect: 'follow',
+	//});
+	//try {
+	//	const checkOut = await fetch(request)
+	//		.catch(err => alert(`Warning! ${err}`));
+	//
+	//	if (checkOut.status <= 350) {
+	//		//globalThis.localStorage.setItem('tier', access);
+	//		globalThis.location.assign(headers.location);
+	//	}
+	//	else {
+	//		alert("Not authorized. Please, try again!");
+	//		globalThis.location.reload();
+	//		throw new Error(checkOut.status);
+	//	};
+	//}
+	//catch(err) {
+	//	alert(`Attention redirection: ${err}`);
+	//};
 };
