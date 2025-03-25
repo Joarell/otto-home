@@ -79,7 +79,6 @@ async function appAccessCheckIn(url) {
 	const request =		new Request(url, {
 		Method: "GET",
 		Mode: 'cors',
-		headers,
 		Cache: 'default',
 		Redirect: 'follow',
 	});
