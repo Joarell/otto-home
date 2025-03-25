@@ -74,7 +74,7 @@ async function backEndLoginAuth(userInfo) {
 	}).then(resp => {
 		alert('LOGGIN');
 		console.log(resp.headers)
-		return(resp.clone);
+		return(resp.clone());
 	}).then(appAccessCheckIn)
 	.catch(e => alert(e));
 };
