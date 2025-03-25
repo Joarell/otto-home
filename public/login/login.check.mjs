@@ -71,41 +71,35 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => console.log(resp.headers))
-	//appAccessCheckIn(respOtto);
+	}).then(resp => resp.ok ? appAccessCheckIn(resp.headers): takeLogin(userInfo));
 };
 
 
-//async function appAccessCheckIn(resp) {
-//	const header = {
-//		'Authorization': `Bearer ${result[0]}`,
-//		'Content-Type': 'application/javascript',
-//		'Accept': 'text/html; text/css; application/javascript',
-//	};
-//	const request =		new Request(`https://app.ottocratesolver.com`, {
-//		Method: "POST",
-//		Mode: 'no-cors',
-//		Headers: header,
-//		Cache: 'default',
-//		Credentials: 'include',
-//		Connection: 'keep-alive',
-//		Redirect: 'follow',
-//	});
-//	try {
-//		const checkOut = await fetch(request)
-//			.catch(err => alert(`Warning! ${err}`));
-//
-//		if (checkOut.status <= 350) {
-//			globalThis.localStorage.setItem('tier', access);
-//			globalThis.location.assign(checkOut.url);
-//		}
-//		else {
-//			alert("Not authorized. Please, try again!");
-//			globalThis.location.reload();
-//			throw new Error(checkOut.status);
-//		};
-//	}
-//	catch(err) {
-//		alert(`Attention redirection: ${err}`);
-//	};
-//};
+async function appAccessCheckIn(headers) {
+	const request =		new Request(headers.location, {
+		Method: "GET",
+		Mode: 'no-cors',
+		headers,
+		Cache: 'default',
+		Credentials: 'include',
+		Connection: 'keep-alive',
+		Redirect: 'follow',
+	});
+	try {
+		const checkOut = await fetch(request)
+			.catch(err => alert(`Warning! ${err}`));
+
+		if (checkOut.status <= 350) {
+			//globalThis.localStorage.setItem('tier', access);
+			globalThis.location.assign(checkOut.url);
+		}
+		else {
+			alert("Not authorized. Please, try again!");
+			globalThis.location.reload();
+			throw new Error(checkOut.status);
+		};
+	}
+	catch(err) {
+		alert(`Attention redirection: ${err}`);
+	};
+};
