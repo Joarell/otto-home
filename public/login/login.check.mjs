@@ -26,7 +26,6 @@ export function loginInto () {
 
 	if (userName && checkingPass(passPhrase))
 		return (backEndLoginAuth({ userName, passPhrase }));
-	// document.getElementById("warning").open = true;
 	alert(`Opss! Wrong credentials. Please try again!`);
 };
 
@@ -71,12 +70,12 @@ async function backEndLoginAuth(userInfo) {
 			'Accept': '*/*'
 		},
 	});
-	return(auth)
+	console.log(auth);
+	return(auth);
 };
 
 
 async function appAccessCheckIn(headers) {
-	console.log(headers);
 	alert('LOGGIN');
 	const url = 'https://app.ottocratesolver.com';
 	const request =		new Request(url, {
