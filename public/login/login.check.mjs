@@ -71,20 +71,18 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => resp.headers)
-	.then(appAccessCheckIn)
-	.catch(e => aler(e));
+	})//.then(resp => resp.headers)
+	// .then(appAccessCheckIn)
+	// .catch(e => alert(e));
 };
 
 
 async function appAccessCheckIn(headers) {
 	const request =		new Request(headers.location, {
 		Method: "GET",
-		Mode: 'no-cors',
+		Mode: 'cors',
 		headers,
 		Cache: 'default',
-		Credentials: 'include',
-		Connection: 'keep-alive',
 		Redirect: 'follow',
 	});
 	globalThis.location.assign(request);
