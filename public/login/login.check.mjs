@@ -70,7 +70,7 @@ async function backEndLoginAuth(userInfo) {
 			'Accept': '*/*'
 		},
 	});
-	console.log(await auth.text());
+	console.log(auth.headers);
 	return(auth);
 };
 
