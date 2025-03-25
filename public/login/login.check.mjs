@@ -69,8 +69,8 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	});
-	console.log(auth.headers.getAll('Set-Cookie'));
+	}).then(resp => resp.headers.getSetCookie());
+	console.log(auth);
 	return(auth);
 };
 
