@@ -71,7 +71,7 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(resp => resp.ok ? appAccessCheckIn(resp.headers): takeLogin(userInfo));
+	}).then(resp => resp.status === '200' ? appAccessCheckIn(resp.headers): takeLogin(userInfo));
 };
 
 
