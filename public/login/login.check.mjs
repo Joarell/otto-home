@@ -79,7 +79,8 @@ async function backEndLoginAuth(userInfo) {
 
 async function appAccessCheckIn(headers) {
 	console.log(headers)
-	const request =		new Request(headers.location, {
+	const url = 'https://app.ottocratesolver.com';
+	const request =		new Request(url, {
 		Method: "GET",
 		Mode: 'cors',
 		headers,
