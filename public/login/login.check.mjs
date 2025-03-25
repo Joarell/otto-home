@@ -78,16 +78,16 @@ async function backEndLoginAuth(userInfo) {
 
 
 async function appAccessCheckIn(headers) {
-	globalThis.location.assign(headers.location);
-	//const request =		new Request(headers.location, {
-	//	Method: "GET",
-	//	Mode: 'no-cors',
-	//	headers,
-	//	Cache: 'default',
-	//	Credentials: 'include',
-	//	Connection: 'keep-alive',
-	//	Redirect: 'follow',
-	//});
+	const request =		new Request(headers.location, {
+		Method: "GET",
+		Mode: 'no-cors',
+		headers,
+		Cache: 'default',
+		Credentials: 'include',
+		Connection: 'keep-alive',
+		Redirect: 'follow',
+	});
+	globalThis.location.assign(request);
 	//try {
 	//	const checkOut = await fetch(request)
 	//		.catch(err => alert(`Warning! ${err}`));
