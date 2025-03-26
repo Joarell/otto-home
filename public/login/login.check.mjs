@@ -36,7 +36,7 @@ async function takeLogin(userLogin){
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
 			method: "POST",
-			mode: 'no-cors',
+			mode: 'cors',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 			body: JSON.stringify({ user: userLogin })
 		}).then(body => body.status)
@@ -88,21 +88,16 @@ async function appAccessCheckIn(response) {
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	try {
-		const checkOut = await fetch(request)
-			.catch(err => alert(`Warning! ${err}`));
+	const checkOut = await fetch(request)
+		.catch(err => alert(`Warning! ${err}`));
 
-		if (checkOut.status <= 350) {
-			//globalThis.localStorage.setItem('tier', access);
-			globalThis.location.assign(headers.location);
-		}
-		else {
-			alert("Not authorized. Please, try again!");
-			globalThis.location.reload();
-			throw new Error(checkOut.status);
-		};
+	if (checkOut.status <= 350) {
+		//globalThis.localStorage.setItem('tier', access);
+		globalThis.location.assign(headers.location);
 	}
-	catch(err) {
-		alert(`Attention redirection: ${err}`);
+	else {
+		alert("Not authorized. Please, try again!");
+		globalThis.location.reload();
+		throw new Error(checkOut.status);
 	};
 };
