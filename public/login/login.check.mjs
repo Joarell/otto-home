@@ -59,9 +59,9 @@ async function setLogin(info, userData) {
 async function backEndLoginAuth(userInfo) {
 	const USER =	JSON.stringify(userInfo);
 	const url =		'https://app.ottocratesolver.com/api/v1/login';
-	const auth =	await fetch (url, {
+	await fetch (url, {
 		method: "POST",
-		mode: 'cors',
+		mode: 'no-cors',
 		body: USER,
 		headers: {
 			'Content-Type': 'application/json; charset=UTF-8',
