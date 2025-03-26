@@ -85,13 +85,14 @@ async function appAccessCheckIn(response) {
 	//const checkOut = await fetch(request)
 	//	.catch(err => alert(`Warning! ${err}`));
 
-	if (checkOut.status <= 350) {
-		//globalThis.localStorage.setItem('tier', access);
-		globalThis.location.assign(request);
-	}
-	else {
-		alert("Not authorized. Please, try again!");
-		globalThis.location.reload();
-		throw new Error(checkOut.status);
-	};
+	globalThis.location.assign(request);
+	//if (checkOut.status <= 350) {
+	//	//globalThis.localStorage.setItem('tier', access);
+	//	globalThis.location.assign(request);
+	//}
+	//else {
+	//	alert("Not authorized. Please, try again!");
+	//	globalThis.location.reload();
+	//	throw new Error(checkOut.status);
+	//};
 };
