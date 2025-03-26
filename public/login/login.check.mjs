@@ -76,19 +76,18 @@ async function backEndLoginAuth(userInfo) {
 
 async function appAccessCheckIn(response) {
 	const user = await response.json();
-	console.log(user);
 	const request =		new Request(`https://app.ottocratesolver.com/${user.userName}`, {
 		Method: "GET",
 		Mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	const checkOut = await fetch(request)
-		.catch(err => alert(`Warning! ${err}`));
+	//const checkOut = await fetch(request)
+	//	.catch(err => alert(`Warning! ${err}`));
 
 	if (checkOut.status <= 350) {
 		//globalThis.localStorage.setItem('tier', access);
-		globalThis.location.assign(headers.location);
+		globalThis.location.assign(request);
 	}
 	else {
 		alert("Not authorized. Please, try again!");
