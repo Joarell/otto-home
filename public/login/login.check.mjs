@@ -70,7 +70,7 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(appAccessCheckIn);
+	})//.then(appAccessCheckIn);
 };
 
 
