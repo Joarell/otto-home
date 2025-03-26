@@ -78,21 +78,20 @@ async function appAccessCheckIn(response) {
 	const user = await response.json();
 	const request =		new Request(`https://app.ottocratesolver.com/${user.userName}`, {
 		Method: "GET",
-		Mode: 'no-cors',
+		Mode: 'cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	//const checkOut = await fetch(request)
-	//	.catch(err => alert(`Warning! ${err}`));
+	const checkOut = await fetch(request)
+		.catch(err => alert(`Warning! ${err}`));
 
-	globalThis.location.assign(request);
-	//if (checkOut.status <= 350) {
-	//	//globalThis.localStorage.setItem('tier', access);
-	//	globalThis.location.assign(request);
-	//}
-	//else {
-	//	alert("Not authorized. Please, try again!");
-	//	globalThis.location.reload();
-	//	throw new Error(checkOut.status);
-	//};
+	if (checkOut.status <= 350) {
+		globalThis.localStorage.setItem('tier', user.access);
+		globalThis.location.assign(request);
+	}
+	else {
+		alert("Not authorized. Please, try again!");
+		globalThis.location.reload();
+		throw new Error(checkOut.status);
+	};
 };
