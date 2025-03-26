@@ -3,8 +3,6 @@ globalThis.onsubmit = (event) => {
 	loginInto();
 };
 
-globalThis.fns = { loginInto };
-
 globalThis.onkeydown = (keyPress) => {
 	if (keyPress.key === 'Enter')
 		loginInto();
@@ -76,15 +74,12 @@ async function backEndLoginAuth(userInfo) {
 };
 
 
-/**
-* @param {Response} res the response from the log in server
-*/
 async function appAccessCheckIn(response) {
 	const user = await response.json();
 	console.log(user);
 	const request =		new Request(`https://app.ottocratesolver.com/${user.userName}`, {
 		Method: "GET",
-		Mode: 'cors',
+		Mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
