@@ -34,7 +34,7 @@ async function takeLogin(userLogin){
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
 		fetch(url, {
 			method: "POST",
-			mode: 'cors',
+			mode: 'no-cors',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 			body: JSON.stringify({ user: userLogin })
 		}).then(body => body.status)
@@ -61,7 +61,7 @@ async function backEndLoginAuth(userInfo) {
 	const url =		'https://app.ottocratesolver.com/api/v1/login';
 	await fetch (url, {
 		method: "POST",
-		mode: 'cors',
+		mode: 'no-cors',
 		body: USER,
 		headers: {
 			'Content-Type': 'application/json; charset=UTF-8',
