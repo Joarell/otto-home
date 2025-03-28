@@ -9,7 +9,7 @@ globalThis.onkeydown = (keyPress) => {
 };
 
 
-function checkingPass (passPhrase) {
+function checkingPass(passPhrase) {
 	if (passPhrase.length < 15)
 		return (true);
 
@@ -18,9 +18,9 @@ function checkingPass (passPhrase) {
 };
 
 
-export function loginInto () {
-	const userName =	document.getElementById("user-name").value;
-	const passPhrase =	document.getElementById("passPhrase").value;
+export function loginInto() {
+	const userName = document.getElementById("user-name").value;
+	const passPhrase = document.getElementById("passPhrase").value;
 
 	if (userName && checkingPass(passPhrase))
 		return (backEndLoginAuth({ userName, passPhrase }));
@@ -28,7 +28,7 @@ export function loginInto () {
 };
 
 
-async function takeLogin(userLogin){
+async function takeLogin(userLogin) {
 	const url = `https://app.ottocratesolver.com/api/v1/boot/login`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
@@ -38,28 +38,28 @@ async function takeLogin(userLogin){
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 			body: JSON.stringify({ user: userLogin })
 		}).then(body => body.status)
-		.then(status => status === 200 ? backEndLoginAuth(userLogin): false)
+			.then(status => status === 200 ? backEndLoginAuth(userLogin) : false)
 	};
 };
 
 
 async function setLogin(info, userData) {
-	switch(info.msg) {
+	switch (info.msg) {
 		case 'Active!':
-			return(await appAccessCheckIn(info));
+			return (await appAccessCheckIn(info));
 		case "ended":
 			return (takeLogin(userData));
 		default:
 			alert('Wrong credentials. Please try again!');
 	};
-	return(info);
+	return (info);
 };
 
 
 async function backEndLoginAuth(userInfo) {
-	const USER =	JSON.stringify(userInfo);
-	const url =		'https://app.ottocratesolver.com/api/v1/login';
-	await fetch (url, {
+	const USER = JSON.stringify(userInfo);
+	const url = 'https://app.ottocratesolver.com/api/v1/login';
+	await fetch(url, {
 		method: "POST",
 		mode: 'cors',
 		body: USER,
@@ -71,7 +71,9 @@ async function backEndLoginAuth(userInfo) {
 			'Accept': '*/*'
 		},
 	}).then(res => {
-		console.log(res.headers)
+		res.headers.forEach((value, key) => {
+			console.log(`${key}: ${value}`);
+		});
 		// if (res.status === 200)
 		// 	globalThis.location.assign(`https://app.ottocratesolver.com/${userInfo.userName}`)
 	});
@@ -80,7 +82,7 @@ async function backEndLoginAuth(userInfo) {
 
 async function appAccessCheckIn(response) {
 	const user = await response.json();
-	const request =		new Request(`https://app.ottocratesolver.com/${user.userName}`, {
+	const request = new Request(`https://app.ottocratesolver.com/${user.userName}`, {
 		Method: "GET",
 		Mode: 'cors',
 		Cache: 'default',
