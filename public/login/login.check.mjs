@@ -66,6 +66,7 @@ async function backEndLoginAuth(userInfo) {
 		Cache: 'default',
 		Redirect: 'follow',
 		headers: {
+			'Content-Type': 'application/dns-message; charset=UTF-8',
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Content-Type': 'text/html; charset=UTF-8',
 			'Content-Type': 'text/css; charset=UTF-8',
