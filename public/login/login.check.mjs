@@ -73,8 +73,8 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Cache-Control': 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached',
 			'Vary': 'Accept-Language',
-			'Accept': '*/*'
-			'Accept': 'application/dns-message; charset=UTF-8',
+			'Accept': '*/*',
+			'Accept': 'application/dns-message; charset=UTF-8'
 		},
 	}).then(async res => {
 		console.log(res.headers.getSetCookie())
