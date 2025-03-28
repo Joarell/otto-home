@@ -70,7 +70,7 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(res => res.status === 200 ? globalThis.location.assign(res.headers.location: 0));
+	}).then(res => res.status === 200 ? globalThis.location.assign(res.headers.get('location')));
 };
 
 
