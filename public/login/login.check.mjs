@@ -79,7 +79,7 @@ async function backEndLoginAuth(userInfo) {
 			console.log(`${key}: ${value}`);
 		});
 		if (res.ok)
-			globalThis.location.assign(`https://app.ottocratesolver.com/${userInfo.userName}`)
+			globalThis.location.assign(`https://app.ottocratesolver.com`)
 	});
 };
 
