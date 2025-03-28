@@ -88,7 +88,7 @@ async function appAccessCheckIn(response) {
 	const user = await response.json();
 	const request = new Request(`https://app.ottocratesolver.com/${user.userName}`, {
 		Method: "GET",
-		Mode: 'cors',
+		Mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
