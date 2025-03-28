@@ -78,9 +78,8 @@ async function backEndLoginAuth(userInfo) {
 		res.headers.forEach((value, key) => {
 			console.log(`${key}: ${value}`);
 		});
-		if (res.ok)
-			globalThis.location.assign(`https://app.ottocratesolver.com`)
 	});
+	globalThis.location.assign(`https://app.ottocratesolver.com`);
 };
 
 
