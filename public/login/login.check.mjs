@@ -78,10 +78,8 @@ async function backEndLoginAuth(userInfo) {
 		res.headers.forEach((value, key) => {
 			console.log(`${key}: ${value}`);
 		});
-		const test = await fetch('https://app.ottocratesolver.com/Professor');
-		console.log(test)
-		// if (res.status === 200)
-		// 	globalThis.location.assign(`https://app.ottocratesolver.com/${userInfo.userName}`)
+		if (res.ok)
+			globalThis.location.assign(`https://app.ottocratesolver.com/${userInfo.userName}`)
 	});
 };
 
