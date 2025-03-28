@@ -68,6 +68,7 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/html; charset=UTF-8',
 			'Content-Type': 'text/css; charset=UTF-8',
 			'Content-Type': 'text/javascript; charset=UTF-8',
+			'Cache-Control': 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached',
 			'Accept': '*/*'
 		},
 	}).then(async res => {
