@@ -63,6 +63,8 @@ async function backEndLoginAuth(userInfo) {
 		method: "POST",
 		mode: 'cors',
 		body: USER,
+		Cache: 'default',
+		Redirect: 'follow',
 		headers: {
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Content-Type': 'text/html; charset=UTF-8',
