@@ -96,8 +96,8 @@ async function appAccessCheckIn(response) {
 		.catch(err => alert(`Warning! ${err}`));
 
 	if (checkOut.status <= 350) {
+		globalThis.location.assign('https://app.ottocratesolver.com');
 		globalThis.localStorage.setItem('tier', user.access);
-		globalThis.location.assign(request);
 	}
 	else {
 		alert("Not authorized. Please, try again!");
