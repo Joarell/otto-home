@@ -70,10 +70,13 @@ async function backEndLoginAuth(userInfo) {
 			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Accept': '*/*'
 		},
-	}).then(res => {
+	}).then(async res => {
+		console.log(res.headers.getSetCookie())
 		res.headers.forEach((value, key) => {
 			console.log(`${key}: ${value}`);
 		});
+		const test = await fetch('https://app.ottocratesolver.com/Professor');
+		console.log(test)
 		// if (res.status === 200)
 		// 	globalThis.location.assign(`https://app.ottocratesolver.com/${userInfo.userName}`)
 	});
