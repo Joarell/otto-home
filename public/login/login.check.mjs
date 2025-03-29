@@ -82,7 +82,12 @@ async function backEndLoginAuth(userInfo) {
 			console.log(`${key}: ${value}`);
 		});
 	});
-	globalThis.location.assign(`https://app.ottocratesolver.com`);
+	globalThis.location.assign(new Request(`https://app.ottocratesolver.com`, {
+		method: 'GET',
+		headers: {
+			'Authorization': `Bearer ${userInfo.userName}`
+		}
+	}));
 };
 
 
