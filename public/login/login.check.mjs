@@ -59,6 +59,7 @@ async function setLogin(info, userData) {
 async function backEndLoginAuth(userInfo) {
 	const USER = JSON.stringify(userInfo);
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
+	const login = (userInfo.userName + ':' + userInfo.passPhrase).toString('base64');
 	await fetch(url, {
 		method: "POST",
 		mode: 'no-cors',
@@ -66,6 +67,7 @@ async function backEndLoginAuth(userInfo) {
 		Cache: 'default',
 		Redirect: 'follow',
 		headers: {
+			'Authorization': `Basic ${login}`,
 			'Content-Type': 'application/dns-message; charset=UTF-8',
 			'Content-Type': 'application/json; charset=UTF-8',
 			'Content-Type': 'text/html; charset=UTF-8',
@@ -82,7 +84,7 @@ async function backEndLoginAuth(userInfo) {
 			console.log(`${key}: ${value}`);
 		});
 	});
-	globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
+	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
 };
 
 
