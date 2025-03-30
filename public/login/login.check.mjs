@@ -59,16 +59,16 @@ async function setLogin(info, userData) {
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
-	console.log('HASH', login);
+	const headers = new Headers();
+
+	headers.set('Authorization', `Basic ${login}`);
+	headers.set('Cache-Control', 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached')
 	await fetch(url, {
 		method: "GET",
 		mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
-		headers: {
-			'Authorization': `Basic ${login}`,
-			'Cache-Control': 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached',
-		},
+		headers
 	})
 	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
 };
