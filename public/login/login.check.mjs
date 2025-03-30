@@ -68,22 +68,9 @@ async function backEndLoginAuth(userInfo) {
 		Redirect: 'follow',
 		headers: {
 			'Authorization': `Basic ${login}`,
-			'Content-Type': 'application/dns-message; charset=UTF-8',
-			'Content-Type': 'application/json; charset=UTF-8',
-			'Content-Type': 'text/html; charset=UTF-8',
-			'Content-Type': 'text/css; charset=UTF-8',
-			'Content-Type': 'text/javascript; charset=UTF-8',
 			'Cache-Control': 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached',
-			'Vary': 'Accept-Language',
-			'Accept': '*/*',
-			'Accept': 'application/dns-message; charset=UTF-8'
 		},
-	}).then(async res => {
-		console.log(res.headers.getSetCookie())
-		res.headers.forEach((value, key) => {
-			console.log(`${key}: ${value}`);
-		});
-	});
+	})
 	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
 };
 
