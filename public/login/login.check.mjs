@@ -65,11 +65,12 @@ async function backEndLoginAuth(userInfo) {
 	headers.set('Cache-Control', 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached');
 	const request =  new Request(url, {
 		method: "GET",
+		mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 		headers
 	});
-	return(	await fetch(request));
+	return(await fetch(request));
 	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);k
 };
 
