@@ -61,7 +61,7 @@ async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = (userInfo.userName + ':' + userInfo.passPhrase).toString('base64');
 	await fetch(url, {
-		method: "POST",
+		method: "GET",
 		mode: 'no-cors',
 		body: USER,
 		Cache: 'default',
