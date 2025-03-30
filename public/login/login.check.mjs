@@ -58,7 +58,7 @@ async function setLogin(info, userData) {
 
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
-	const login = (userInfo.userName + ':' + userInfo.passPhrase).toString('base64');
+	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
 	console.log('HASH', login);
 	await fetch(url, {
 		method: "GET",
