@@ -63,7 +63,7 @@ async function backEndLoginAuth(userInfo) {
 	await fetch(url, {
 		method: "GET",
 		mode: 'no-cors',
-		body: USER,
+		// body: USER,
 		Cache: 'default',
 		Redirect: 'follow',
 		headers: {
