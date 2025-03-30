@@ -62,15 +62,16 @@ async function backEndLoginAuth(userInfo) {
 	const headers = new Headers();
 
 	headers.set('Authorization', `Basic ${login}`);
-	headers.set('Cache-Control', 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached')
-	await fetch(url, {
+	headers.set('Cache-Control', 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached');
+	const request =  new Request(url, {
 		method: "GET",
 		mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 		headers
-	})
-	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
+	});
+	await fetch(request);
+	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);k
 };
 
 
