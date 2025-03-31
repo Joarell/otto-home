@@ -62,7 +62,10 @@ async function backEndLoginAuth(userInfo) {
 
 	const request =  new Request(url, {
 		method: "GET",
-		headers: {'Authorization': `Basic ${ login }`},
+		headers: {
+			'Authorization': `Basic ${ login }`,
+			'Content-Type': `text/html, text/css, text/javascritp`
+		},
 		mode: 'no-cors',
 		Redirect: 'follow',
 		credentials: "same-origin"
