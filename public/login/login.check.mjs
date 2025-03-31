@@ -66,7 +66,7 @@ async function backEndLoginAuth(userInfo) {
 			'Authorization': `Basic ${ login }`,
 			'Content-Type': `text/html, text/css, text/javascript`
 		},
-		mode: 'no-cors',
+		mode: 'cors',
 		Redirect: 'follow',
 		credentials: "same-origin"
 	});
