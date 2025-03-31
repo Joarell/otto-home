@@ -61,8 +61,7 @@ async function backEndLoginAuth(userInfo) {
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
 	const headers = new Headers();
 
-	headers.set('Authorization', `Basic ${login}`);
-	headers.set('Cache-Control', 'max-age=3600, max-stale=1800, min-fresh=3600, only-if-cached');
+	headers.set('Authorization', `Basic ${ login }`);
 	const request =  new Request(url, {
 		method: "GET",
 		headers,
