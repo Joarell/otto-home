@@ -59,18 +59,16 @@ async function setLogin(info, userData) {
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
-	const headers = new Headers();
 
-	headers.set('Authorization', `Basic ${ login }`);
 	const request =  new Request(url, {
 		method: "GET",
-		headers,
+		headers: {'Authorization': `Basic ${ login }`},
 		mode: 'no-cors',
 		Redirect: 'follow',
 		credentials: "same-origin"
 	});
 	return(await fetch(request));
-	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);k
+	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
 };
 
 
