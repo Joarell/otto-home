@@ -77,7 +77,7 @@ async function backEndLoginAuth(userInfo) {
 					method: 'GET',
 					mode: 'cors',
 					headers: successReq.headers
-				}).then(globalThis.location.assign(res.headers.get('https://app.ottocratesolver.com')))
+				})//.then(globalThis.location.assign(res.headers.get('https://app.ottocratesolver.com')))
 				.catch(e => console.log(e));
 				break;
 			case 401:
