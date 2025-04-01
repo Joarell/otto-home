@@ -68,7 +68,6 @@ async function backEndLoginAuth(userInfo) {
 		},
 		mode: 'cors',
 		Redirect: 'follow',
-		credentials: "same-origin"
 	});
 	return(await fetch(request));
 	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
