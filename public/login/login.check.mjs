@@ -68,11 +68,17 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
-	await fetch(request).then(res => {
+	await fetch(request).then(async res => {
 		switch(res.status){
 			case 200:
-				console.log(res.headers.get('location'))
-				return(globalThis.location.assign(res.headers.get('location')))
+				const successReq = res.clone();
+				await  fetch(res.headers.get('location'), {
+					method: 'GET',
+					mode: 'cors',
+					headers: successReq.headers
+				}).then(globalThis.location.assign(res.headers.get('location')))
+				.catch(e => console.log(e));
+				break;
 			case 401:
 				return(takeLogin(userInfo))
 			default:
