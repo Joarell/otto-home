@@ -55,7 +55,6 @@ async function setLogin(info, userData) {
 	return (info);
 };
 
-
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
@@ -69,8 +68,17 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
-	return(await fetch(request));
-	// globalThis.location.assign(`https://app.ottocratesolver.com/?name=${userInfo.userName}`);
+	await fetch(request).then(res => {
+		switch(res.status ){
+			case 303:
+				return(globalThis.location.assign(res.headers.get('location')))
+			case 401:
+				return(takeLogin(userInfo))
+			default:
+				alert('Wrong credentials. Please try again!');
+				globalThis.location.reload();
+		};
+	}).catch(e => console.error(e));
 };
 
 
