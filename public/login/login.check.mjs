@@ -69,8 +69,8 @@ async function backEndLoginAuth(userInfo) {
 		Redirect: 'follow',
 	});
 	await fetch(request).then(res => {
-		switch(res.status ){
-			case 303:
+		switch(res.status){
+			case 200:
 				return(globalThis.location.assign(res.headers.get('location')))
 			case 401:
 				return(takeLogin(userInfo))
