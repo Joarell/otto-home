@@ -71,6 +71,7 @@ async function backEndLoginAuth(userInfo) {
 	await fetch(request).then(res => {
 		switch(res.status){
 			case 200:
+				console.log(res.headers.get('location'))
 				return(globalThis.location.assign(res.headers.get('location')))
 			case 401:
 				return(takeLogin(userInfo))
