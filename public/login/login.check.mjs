@@ -69,6 +69,7 @@ async function backEndLoginAuth(userInfo) {
 		Redirect: 'follow',
 	});
 	await fetch(request).then(async res => {
+		console.log(res.headers.get('location'));
 		switch(res.status){
 			case 200:
 				const successReq = res.clone();
