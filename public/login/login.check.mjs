@@ -74,13 +74,7 @@ async function backEndLoginAuth(userInfo) {
 		console.log(res.status);
 		switch(res.status){
 			case 200:
-				const headers = res.clone().headers;
 				const appURL =	new URL('https://app.ottocratesolver.com');
-				const request = new Request(appURL, {
-					method: 'GET',
-					headers,
-					credentials: true,
-				});
 				return(globalThis.location.assign(appURL));
 			case 401:
 				return(takeLogin(userInfo))
