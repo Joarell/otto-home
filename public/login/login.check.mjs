@@ -3,6 +3,7 @@ globalThis.onsubmit = (event) => {
 	loginInto();
 };
 
+
 globalThis.onkeydown = (keyPress) => {
 	if (keyPress.key === 'Enter')
 		loginInto();
@@ -55,6 +56,7 @@ async function setLogin(info, userData) {
 	return (info);
 };
 
+
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
@@ -72,14 +74,14 @@ async function backEndLoginAuth(userInfo) {
 		console.log(res.status);
 		switch(res.status){
 			case 200:
-				const successReq = res.clone();
-				await  fetch(res.headers.get('location'), {
+				const headers = res.clone().headers;
+				const appURL =	new URL('https://app.ottocratesolver.com');
+				const request = new Request(appURL, {
 					method: 'GET',
-					mode: 'cors',
-					headers: successReq.headers
-				}).then(globalThis.location.assign(res.headers.get('https://app.ottocratesolver.com')))
-				.catch(e => console.log(e));
-				break;
+					headers,
+					credentials: true,
+				});
+				return(globalThis.location.assign(appURL));
 			case 401:
 				return(takeLogin(userInfo))
 			default:
