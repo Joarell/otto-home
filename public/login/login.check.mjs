@@ -70,20 +70,19 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
-	return(await fetch(request));
-	// await fetch(request).then(async res => {
-	// 	console.log(res.status);
-	// 	switch(res.status){
-	// 		case 200:
-	// 			const appURL =	new URL('https://app.ottocratesolver.com');
-	// 			return;
-	// 		case 401:
-	// 			return(takeLogin(userInfo))
-	// 		default:
-	// 			alert('Wrong credentials. Please try again!');
-	// 			globalThis.location.reload();
-	// 	};
-	// }).catch(e => console.error(e));
+	await fetch(request).then(async res => {
+		console.log(res.status);
+		switch(res.status){
+			case 200:
+				const appURL =	new URL('https://app.ottocratesolver.com');
+				return(globalThis.location.assign(appURL));
+			case 401:
+				return(takeLogin(userInfo))
+			default:
+				alert('Wrong credentials. Please try again!');
+				globalThis.location.reload();
+		};
+	}).catch(e => console.error(e));
 };
 
 
