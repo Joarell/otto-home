@@ -75,7 +75,7 @@ async function backEndLoginAuth(userInfo) {
 		console.log(res.status);
 		switch(res.status){
 			case 302:
-				return(globalThis.location.assign(url));
+				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
 				return(takeLogin(userInfo))
 			default:
