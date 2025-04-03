@@ -58,7 +58,7 @@ async function setLogin(info, userData) {
 
 
 async function backEndLoginAuth(userInfo) {
-	const url = 'https://app.ottocratesolver.com/api/v1/login';
+	const url = 'https://app.ottocratesolver.com';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
 
 	const request =  new Request(url, {
@@ -70,13 +70,9 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
-	return(await fetch(request));
 	await fetch(request).then(async res => {
 		console.log(res.status);
 		switch(res.status){
-			case 200:
-				const appURL =	new URL('https://app.ottocratesolver.com');
-				return(globalThis.location.assign(appURL));
 			case 401:
 				return(takeLogin(userInfo))
 			default:
