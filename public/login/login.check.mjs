@@ -74,7 +74,7 @@ async function backEndLoginAuth(userInfo) {
 	await fetch(request).then(async res => {
 		console.log(res.status);
 		switch(res.status){
-			case 302:
+			case 200:
 				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
 				return(takeLogin(userInfo))
