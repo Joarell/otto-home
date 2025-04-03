@@ -75,7 +75,7 @@ async function backEndLoginAuth(userInfo) {
 		switch(res.status){
 			case 200:
 				const appURL =	new URL('https://app.ottocratesolver.com');
-				return(globalThis.location.assign(appURL));
+				return;
 			case 401:
 				return(takeLogin(userInfo))
 			default:
