@@ -58,7 +58,7 @@ async function setLogin(info, userData) {
 
 
 async function backEndLoginAuth(userInfo) {
-	const url = 'https://app.ottocratesolver.com';
+	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
 
 	const request =  new Request(url, {
