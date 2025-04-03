@@ -70,9 +70,12 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
+	return(await fetch(request));
 	await fetch(request).then(async res => {
 		console.log(res.status);
 		switch(res.status){
+			case 200:
+				return(globalThis.location.assign(url));
 			case 401:
 				return(takeLogin(userInfo))
 			default:
