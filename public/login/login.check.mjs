@@ -72,7 +72,7 @@ async function backEndLoginAuth(userInfo) {
 	});
 	return(await fetch(request));
 	await fetch(request).then(async res => {
-		console.log(res.status);
+		alert(res.status);
 		switch(res.status){
 			case 200:
 				return(globalThis.location.assign('https://app.ottocratesolver.com'));
