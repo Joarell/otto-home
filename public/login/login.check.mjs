@@ -70,12 +70,9 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
-	// return(await fetch(request));
 	await fetch(request).then(async res => {
 		alert(res.status);
 		switch(res.status){
-			case 200:
-				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
 				return(takeLogin(userInfo))
 			default:
