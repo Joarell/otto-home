@@ -71,7 +71,6 @@ async function backEndLoginAuth(userInfo) {
 		Redirect: 'follow',
 	});
 	await fetch(request).then(async res => {
-		alert.log(res.status);
 		switch(res.status){
 			case 200:
 				return(globalthis.location.assign('https://app.ottocratesolver.com'));
