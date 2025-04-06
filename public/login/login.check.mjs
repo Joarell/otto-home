@@ -70,6 +70,7 @@ async function backEndLoginAuth(userInfo) {
 		mode: 'cors',
 		Redirect: 'follow',
 	});
+	return(await fetch(request));
 	await fetch(request).then(async res => {
 		switch(res.status){
 			case 200:
