@@ -69,18 +69,18 @@ async function backEndLoginAuth(userInfo) {
 		},
 		mode: 'cors',
 		Redirect: 'follow',
+		credentials: 'include'
 	});
-	return(await globalThis.fetch(request));
-	// await fetch(request).then(async res => {
-	// 	switch(res.status){
-	// 		case 200:
-	// 			return(globalThis.location.assign('https://app.ottocratesolver.com'));
-	// 		case 401:
-	// 			return(takeLogin(userInfo))
-	// 		case 404:
-	// 			globalThis.location.reload();
-	// 	};
-	// }).catch(e => console.error(e));
+	await fetch(request).then(async res => {
+		switch(res.status){
+			case 200:
+				return(globalThis.location.assign('https://app.ottocratesolver.com'));
+			case 401:
+				return(takeLogin(userInfo))
+			case 404:
+				globalThis.location.reload();
+		};
+	}).catch(e => console.error(e));
 };
 
 
