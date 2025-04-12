@@ -33,13 +33,21 @@ async function takeLogin(userLogin) {
 	const url = `https://app.ottocratesolver.com/api/v1/boot/login`;
 
 	if (confirm("This USER is already logged in. Would you like to take it?")) {
-		fetch(url, {
+		await fetch(url, {
 			method: "POST",
 			mode: 'cors',
-			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-			body: JSON.stringify({ user: userLogin })
-		}).then(body => body.status)
-			.then(status => status === 200 ? backEndLoginAuth(userLogin) : false)
+			headers: {
+				'Authorization': `Basic ${ userLogin }`,
+				'Content-Type': `text/html, text/css, text/javascript`
+			},
+			mode: 'cors',
+			Redirect: 'follow',
+			credentials: 'include'
+		}).then(
+			body => body.status === 200 ?
+				globalThis.location.assign('https://app.ottocratesolver.com'):
+				globalThis.location.reload()
+		);
 	};
 };
 
@@ -76,7 +84,7 @@ async function backEndLoginAuth(userInfo) {
 			case 200:
 				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
-				return(takeLogin(userInfo))
+				return(takeLogin(login));
 			case 404:
 				globalThis.location.reload();
 		};
