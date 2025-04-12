@@ -46,7 +46,7 @@ async function takeLogin(userLogin) {
 		}).then(
 			body => body.status === 200 ?
 				globalThis.location.assign('https://app.ottocratesolver.com'):
-				globalThis.location.reload()
+				setLogin("", userLogin)
 		);
 	};
 };
@@ -60,6 +60,7 @@ async function setLogin(info, userData) {
 			return (takeLogin(userData));
 		default:
 			alert('Wrong credentials. Please try again!');
+			globalThis.location.reload();
 	};
 	return (info);
 };
@@ -86,7 +87,7 @@ async function backEndLoginAuth(userInfo) {
 			case 401:
 				return(takeLogin(login));
 			case 404:
-				globalThis.location.reload();
+				setLogin("", userInfo);
 		};
 	}).catch(e => console.error(e));
 };
