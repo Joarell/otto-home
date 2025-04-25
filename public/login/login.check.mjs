@@ -82,7 +82,6 @@ async function backEndLoginAuth(userInfo) {
 	});
 	await fetch(request).then(async res => {
 		switch(res.status) {
-			console.log(res);
 			case 200:
 				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
