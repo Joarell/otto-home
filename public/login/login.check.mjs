@@ -104,7 +104,7 @@ async function appAccessCheckIn(response) {
 	const checkOut = await fetch(request)
 		.catch(err => alert(`Warning! ${err}`));
 
-	globalThis.location.assign('https://app.ottocratesolver.com');
+	// globalThis.location.assign('https://app.ottocratesolver.com');
 	if (checkOut.status <= 350) {
 		globalThis.localStorage.setItem('tier', user.access);
 	}
