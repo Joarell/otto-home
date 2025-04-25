@@ -81,7 +81,7 @@ async function backEndLoginAuth(userInfo) {
 		credentials: 'include'
 	});
 	await fetch(request).then(async res => {
-		switch(res.status){
+		switch(res.status) {
 			case 200:
 				return(globalThis.location.assign('https://app.ottocratesolver.com'));
 			case 401:
@@ -94,17 +94,16 @@ async function backEndLoginAuth(userInfo) {
 
 
 async function appAccessCheckIn(response) {
-	const user = await response.json();
-	const request = new Request(`https://app.ottocratesolver.com/${user.userName}`, {
+	const user =	await response.json();
+	const request = new Request(`https://app.ottocratesolver.com/`, {
 		Method: "GET",
 		Mode: 'no-cors',
 		Cache: 'default',
 		Redirect: 'follow',
 	});
-	const checkOut = await fetch(request)
-		.catch(err => alert(`Warning! ${err}`));
+	const checkOut = await fetch(request).catch(err => alert(`Warning! ${err}`));
 
-	// globalThis.location.assign('https://app.ottocratesolver.com');
+	globalThis.location.assign('https://app.ottocratesolver.com');
 	if (checkOut.status <= 350) {
 		globalThis.localStorage.setItem('tier', user.access);
 	}
