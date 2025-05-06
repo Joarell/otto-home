@@ -87,9 +87,9 @@ async function backEndLoginAuth(userInfo) {
 			case 404:
 				setLogin("", userInfo);
 		};
-	}).catch(e => {
-		alert(e);
+	}).catch(async () => {
 		globalThis.location.reload();
 		alert('Wrong credentials. Please try again!');
+		await takeLogin(userInfo);
 	});
 };
