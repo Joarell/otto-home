@@ -54,8 +54,6 @@ async function takeLogin(userLogin) {
 
 async function setLogin(info, userData) {
 	switch (info.msg) {
-		case 'Active!':
-			return (await appAccessCheckIn(info));
 		case "ended":
 			return (takeLogin(userData));
 		default:
@@ -69,7 +67,6 @@ async function setLogin(info, userData) {
 async function backEndLoginAuth(userInfo) {
 	const url = 'https://app.ottocratesolver.com/api/v1/login';
 	const login = btoa(userInfo.userName + ':' + userInfo.passPhrase);
-
 	const request =  new Request(url, {
 		method: "GET",
 		headers: {
@@ -80,6 +77,7 @@ async function backEndLoginAuth(userInfo) {
 		Redirect: 'follow',
 		credentials: 'include'
 	});
+
 	await fetch(request).then(async res => {
 		switch(res.status){
 			case 200:
@@ -89,28 +87,9 @@ async function backEndLoginAuth(userInfo) {
 			case 404:
 				setLogin("", userInfo);
 		};
-	}).catch(e => console.error(e));
-};
-
-
-async function appAccessCheckIn(response) {
-	const user = await response.json();
-	const request = new Request(`https://app.ottocratesolver.com/${user.userName}`, {
-		Method: "GET",
-		Mode: 'no-cors',
-		Cache: 'default',
-		Redirect: 'follow',
-	});
-	const checkOut = await fetch(request)
-		.catch(err => alert(`Warning! ${err}`));
-
-	globalThis.location.assign('https://app.ottocratesolver.com');
-	if (checkOut.status <= 350) {
-		globalThis.localStorage.setItem('tier', user.access);
-	}
-	else {
-		alert("Not authorized. Please, try again!");
+	}).catch(e => {
+		alert(e);
 		globalThis.location.reload();
-		throw new Error(checkOut.status);
-	};
+		alert('Wrong credentials. Please try again!');
+	});
 };
